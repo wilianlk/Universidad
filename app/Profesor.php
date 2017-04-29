@@ -9,7 +9,7 @@ class Profesor extends Model
     protected $table = 'profesor';
     protected $primarykey = 'id'; 
     protected $fillable = [
-        'nombre', 'apellido', 'codigo_profesor', 
+        'nombre', 'apellido', 'descripcion', 'codigo_profesor',
     ];
 
     public function Electivas()

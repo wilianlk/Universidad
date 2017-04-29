@@ -17,6 +17,7 @@ class CreateProfesorsTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('apellido');
+            $table->text('descripcion');
             $table->integer('codigo_profesor');
             $table->timestamps();
         });

@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
                 'nombre' => 'Admin',
                 'apellido' => 'Admin',
                 'password' => bcrypt('123456'),
-                'email' => 'admin@hotmail.com',
+                'email' => 'admin@hotmail.es',
                 'rol' => 'Admin',
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,

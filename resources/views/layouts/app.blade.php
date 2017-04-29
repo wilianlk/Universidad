@@ -8,25 +8,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Sistema de Materias') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
-
-    <link rel='stylesheet' href='assets/css/bootstrap.min.css' type='text/css' media='all' />
-    <link rel='stylesheet' href='ASLibrary/css/style3.css' type='text/css' media='all' />
-
-    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="ASLibrary/js/js-bootstrap.php"></script>
-    <style>
-        body {
-            padding-top: 15px;
-        }
-    </style>
 
     <!-- Scripts -->
     <script>
@@ -36,10 +21,9 @@
     </script>
 </head>
 <body>
-<div id="app">
-    <div class="container">
-        <div class="row">
-            <nav class="navbar navbar-default navbar-static-top">
+    <div id="app">
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -51,26 +35,9 @@
                     </button>
 
                     <!-- Branding Image -->
-                    @if (Auth::guest())
-                        <a class="navbar-brand" href="{{ URL('/') }}">
-                            {{ config('app.name', 'Will') }}
-                        </a>
-                    @else
-                        @if(Auth::user()->rol == 'Admin')
-                            <a class="navbar-brand" href="{{ URL('admin') }}">
-                                {{ config('app.name', 'Will') }}
-                            </a>
-                        @elseif(Auth::user()->rol == 'Estudiante')
-                            <a class="navbar-brand" href="{{ URL('estudiante') }}">
-                                {{ config('app.name', 'Will') }}
-                            </a>
-                        @else
-                            <a class="navbar-brand" href="{{ URL('usuario') }}">
-                                {{ config('app.name', 'Will') }}
-                            </a>
-                        @endif
-                    @endif
-
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -83,20 +50,20 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-
-
+                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->nombre.' '.Auth::user()->apellido }} <span class="caret"></span>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
+                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Salir
+                                            Logout
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -108,26 +75,13 @@
                         @endif
                     </ul>
                 </div>
-            </nav>
+            </div>
+        </nav>
 
-            @if(\Session::has('message'))
-                <div class="alert alert-info">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <center>
-                        <p><strong><i class="fa fa-info-circle"> </i> </strong> {{ \Session::get('message') }}</p>
-                    </center>
-                </div>
-            @endif
-
-            @yield('content')
-
-        </div>
+        @yield('content')
     </div>
-</div>
 
-<!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
