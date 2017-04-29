@@ -1,62 +1,126 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="en">
+<html lang="{{ config('app.locale') }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('htmlheader')
-    @include('layouts.partials.htmlheader')
-@show
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
-<body class="skin-blue sidebar-mini">
-<div class="wrapper">
+    <title>{{ config('app.name', 'Sistema de Materias') }}</title>
 
-    @include('layouts.partials.mainheader')
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+    <style>
+            body {
+                padding-top: 40px;
+            }
+        </style>
 
-    @include('layouts.partials.sidebar')
+    <!-- Scripts -->
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
+</head>
+<body>
+    <div id="app">
+      <div class="container">
+        <div class="row">
+            <nav class="navbar navbar-default navbar-static-top">
+                <div class="navbar-header">
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+                    <!-- Collapsed Hamburger -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
 
-        @include('layouts.partials.contentheader')
+                    <!-- Branding Image -->
+                    @if (Auth::guest())
+                        <a class="navbar-brand" href="{{ URL('/') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                    @else
+                      @if(Auth::user()->rol == 'admin')
+                        <a class="navbar-brand" href="{{ URL('admin') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                      @elseif(Auth::user()->rol == 'estudiante')
+                        <a class="navbar-brand" href="{{ URL('estudiante') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                      @else
+                        <a class="navbar-brand" href="{{ URL('usuario') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                      @endif
+                    @endif
 
-        <!-- Main content -->
-        <section class="content">
-            <!-- Your Page Content Here -->
-            @yield('main-content')
-        </section><!-- /.content -->
-    </div><!-- /.content-wrapper -->
+                </div>
 
-    @include('layouts.partials.controlsidebar')
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="nav navbar-nav">
+                        &nbsp;
+                    </ul>
 
-    @include('layouts.partials.footer')
+                    <!-- Right Side Of Navbar -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- Authentication Links -->
+                        @if (Auth::guest())
+                        
+    
+                        @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->nombre.' '.Auth::user()->apellido }} <span class="caret"></span>
+                                </a>
 
-</div><!-- ./wrapper -->
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Salir
+                                        </a>
 
-@section('scripts')
-    @include('layouts.partials.scripts')
-@show
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                    </ul>
+                </div>
+            </nav>
 
+        @if(\Session::has('message'))
+          <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <center>
+              <p><strong><i class="fa fa-info-circle"> </i> </strong> {{ \Session::get('message') }}</p>
+            </center>
+          </div>
+        @endif
+
+        @yield('content')
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

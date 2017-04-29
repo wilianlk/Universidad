@@ -1,19 +1,10 @@
 <?php
 
-/*
- * Taken from
- * https://github.com/laravel/framework/blob/5.2/src/Illuminate/Auth/Console/stubs/make/controllers/HomeController.stub
- */
-
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use Illuminate\Http\Request;
+use Datatables;
 
-/**
- * Class HomeController
- * @package App\Http\Controllers
- */
 class HomeController extends Controller
 {
     /**
@@ -29,10 +20,25 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
         return view('home');
+    }
+
+    public function admin()
+    {
+        return view('admin.home');
+    }
+
+    public function estudiante()
+    {
+        return view('estudiante.home');
+    }
+
+    public function usuario()
+    {
+        return view('usuario.home');
     }
 }
