@@ -19,6 +19,6 @@ class Estudiantes extends Model
 
     public function Electivas()
     {
-    	return $this->hasMany('App\Electivas');
+    	return $this->belongsTo('App\Electivas');
     }
 }

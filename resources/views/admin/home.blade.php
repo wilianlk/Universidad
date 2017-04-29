@@ -19,8 +19,8 @@
 
         <div class="col-md-4">
             <div class="panel">
-                <i class="fa fa-graduation-cap fa-5x"></i>
-                <a href="{{ URL('admin/usuario') }}" class="btn btn-primary btn-block btn-home-admin">ESTUDIANTES</a>
+                <i class="fa fa-users fa-5x"></i>
+                <a href="{{ URL('admin/usuario') }}" class="btn btn-primary btn-block btn-home-admin">USUARIOS</a>
             </div>
         </div>
 
@@ -31,6 +31,12 @@
             </div>
         </div>
         
+        <div class="col-md-4">
+            <div class="panel">
+                <i class="fa fa-graduation-cap fa-5x"></i>
+                <a href="{{ URL('/admin/profesor') }}" class="btn btn-primary btn-block btn-home-admin">PROFESOR</a>
+            </div>
+        </div>
         
     </div><hr>
 </div>

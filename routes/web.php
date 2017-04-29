@@ -27,6 +27,8 @@ Route::group(['middleware' => ['admin']], function()
 
     Route::resource('/admin/usuario','Admin\UsuariosController');
 
+    Route::resource('/admin/profesor','Admin\ProfesorController');
+
 });
 
 //Estudiante_____

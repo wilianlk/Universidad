@@ -24,7 +24,7 @@
                   @foreach($electiva as $electivas)
                     <tr>
                         <td>{{ $electivas->Electivas->nombre }}</td>
-                        <td>{{ $electivas->Electivas->profesor }}</td>  
+                        <td>{{ $electivas->Electivas->Profesor->nombre.' '.$electivas->Electivas->Profesor->apellido }}</td>  
                         <td>{{ $electivas->Electivas->descripcion }}</td>
                         <td>{{ $electivas->Electivas->cupos_disponibles }}</td> 
                     </tr>     

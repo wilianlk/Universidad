@@ -23,7 +23,7 @@
                   </thead>    
                   <tbody>
                   @foreach($usuario as $usuarios)
-                  @if($usuarios->rol == "estudiante")
+                  @if($usuarios->rol == "Estudiante")
                     <tr>
                         <td>{{ $usuarios->nombre }}</td>
                         <td>{{ $usuarios->apellido }}</td>  

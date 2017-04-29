@@ -39,19 +39,21 @@ class UsuariosController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nombre'            => 'required',
-            'descripcion'       => 'required',
-            'profesor'          => 'required',
-            'cupos_disponibles' => 'required',
+            'nombre'   => 'required',
+            'apellido' => 'required',
+            'email'    => 'required|unique:users|max:255',
+            'password' => 'required',
+            'rol' => 'required',
         ]);
         $usuario = User::create([
-        	'nombre'            => $request->get('nombre'),
-            'descripcion'       => $request->get('descripcion'),
-            'profesor'          => $request->get('profesor'),
-            'cupos_disponibles' => $request->get('cupos_disponibles'),
+        	'nombre'   => $request->get('nombre'),
+            'apellido' => $request->get('apellido'),
+            'email'    => $request->get('email'),
+            'password' => bcrypt($request->get('password')),
+            'rol'    => $request->get('rol'),
         ]);
 
-        $message = $usuario ? 'Electiva agregada Correctamente!' : 'La Electiva No pudo agregarse!';
+        $message = $usuario ? 'Usuario agregada Correctamente!' : 'El Usuario No pudo agregarse!';
         return Redirect('admin/usuario')->with('message', $message);
     }
 
@@ -89,14 +91,18 @@ class UsuariosController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nombre'            => 'required',
-            'descripcion'       => 'required',
-            'profesor'          => 'required',
-            'cupos_disponibles' => 'required',
+            'nombre'   => 'required',
+            'apellido' => 'required',
+            'email'    => 'required|unique:users|max:255',
+            'password' => 'required',
         ]);
         $usuario = User::find($id);
-        $usuario->update($request->all());
-        $message = $usuario ? 'Electiva actualizada Correctamente!' : 'La Electiva No pudo actualizarce!';
+        $usuario->nombre   = $request->get('nombre');
+        $usuario->apellido = $request->get('apellido');
+        $usuario->email    = $request->get('email');
+        if($request->get('password') != "") bcrypt($request->get('password'));
+        $updated = $usuario->save();
+        $message = $usuario ? 'Usuario actualizada Correctamente!' : 'El Usuario No pudo actualizarce!';
         return Redirect('admin/usuario')->with('message', $message);
     }
 
@@ -110,7 +116,7 @@ class UsuariosController extends Controller
     {
         $usuario = User::find($id);
         $usuario->delete();
-        $message = $usuario ? 'Electiva eliminada Correctamente!' : 'La Electiva no se pudo eliminar!';
+        $message = $usuario ? 'Usuario eliminada Correctamente!' : 'El Usuario no se pudo eliminar!';
         return Redirect('admin/usuario')->with('message', $message);
     }
 }
