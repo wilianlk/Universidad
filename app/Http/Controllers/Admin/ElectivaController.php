@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Electivas;
-use App\Profesor;
+use App\profesor;
 use Datatables;
 
 class ElectivaController extends Controller
@@ -28,7 +28,7 @@ class ElectivaController extends Controller
      */
     public function create()
     {
-        $profesor = Profesor::orderBy('id','DESC')->pluck('codigo_profesor','id');
+        $profesor = profesor::orderBy('id','DESC')->pluck('codigo_profesor','id');
         return view('admin.electiva.create', compact('profesor'));
     }
 

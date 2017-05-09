@@ -40,13 +40,11 @@ class ProfesorController extends Controller
         $this->validate($request, [
             'nombre'          => 'required',
             'apellido'        => 'required',
-            'descripcion'        => 'required',
             'codigo_profesor' => 'required',
         ]);
         $profesor = Profesor::create([
         	'nombre'          => $request->get('nombre'),
             'apellido'        => $request->get('apellido'),
-            'descripcion'        => $request->get('descripcion'),
             'codigo_profesor' => $request->get('codigo_profesor'),
         ]);
 
@@ -79,7 +77,6 @@ class ProfesorController extends Controller
         $this->validate($request, [
             'nombre'          => 'required',
             'apellido'        => 'required',
-            'descripcion'        => 'required',
             'codigo_profesor' => 'required',
         ]);
         $profesor = Profesor::find($id);

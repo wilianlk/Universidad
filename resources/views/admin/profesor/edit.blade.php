@@ -19,15 +19,10 @@
                     {!!form::label('apellido', 'Apellido')!!}
                     {!!Form::text('apellido', null,['id'=>'apellido', 'class'=>'form-control','placeholder'=>'Digite el Apellido']) !!}
                 </div>
-                  <div class="form-group col-xs-4">
-                      {!!form::label('codigo_profesor','Cupos diponibles Profesor')!!}
-                      {!!form::number('codigo_profesor',null,['id'=>'codigo_profesor', 'class'=>'form-control','placeholder'=>'Cupos'])!!}
-                  </div>
-                  <br><br><br><br>
-                  <div class="form-group" rows="3">
-                      {!!form::label('descripcion','Descripcion')!!}
-                      {!!form::textarea('descripcion',null,['id'=>'descripcion', 'class'=>'form-control','placeholder'=>'Escriba una descripcion'])!!}
-                  </div>
+                <div class="form-group">
+                    {!!form::label('codigo_profesor','Codigo del Profesor')!!}
+                    {!!form::text('codigo_profesor',null,['id'=>'codigo_profesor', 'class'=>'form-control','placeholder'=>'Digite Codigo del Profesor'])!!}
+                </div>
               </div><hr>
               <div class="col-md-8 col-md-offset-2">
                <a class="btn btn-primary" href="{{ route('profesor.index') }}">Atras</a>

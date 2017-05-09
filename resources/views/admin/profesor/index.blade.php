@@ -16,9 +16,8 @@
                     <tr>
                        <th>Nombre</th>
                        <th>Apellido</th>
-                       <th>Cupos disponibles de Profesor</th>
-                        <th>descripcion</th>
-                        <th>Accion</th>
+                       <th>Codigo de Profesor</th>
+                       <th>Accion</th>
                     </tr>
                   </thead>    
                   <tbody>
@@ -27,7 +26,6 @@
                         <td>{{ $profesors->nombre }}</td>
                         <td>{{ $profesors->apellido }}</td>  
                         <td>{{ $profesors->codigo_profesor }}</td>
-                        <td>{{ $profesors->descripcion }}</td>
                         <td>
                             <a href="{{ route('profesor.edit', $profesors->id) }}" class="btn btn-warning">
                               Editar

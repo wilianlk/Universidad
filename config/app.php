@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Sistema de Cupos Materias Electivas',
+    'name' => env('APP_NAME', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => 'es',
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -90,7 +90,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'es',
+    'fallback_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -103,7 +103,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY','base64:ID4sjst49enTzeKnQyJRFN/ksDE9MHeitoGfymsD5vk='),
+    'key' => env('APP_KEY', 'base64:ID4sjst49enTzeKnQyJRFN/ksDE9MHeitoGfymsD5vk='),
 
     'cipher' => 'AES-256-CBC',
 
@@ -119,8 +119,8 @@ return [
     | Available Settings: "single", "daily", "syslog", "errorlog"
     |
     */
-    'log' => 'errorlog',
-//    'log' => env('APP_LOG', 'single'),
+
+    'log' => env('APP_LOG', 'single'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
